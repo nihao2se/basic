@@ -250,6 +250,9 @@ body.pc #card{transform:scale(.37795);transform-origin:0 0;-webkit-print-color-a
 .cd2.bk .nmx,.cd2.bk .fl,.cd5.bk .nmx,.cd5.bk .fl,.cd9.bk .nmx,.cd9.bk .fl{left:36px;width:784px}.cd5.bk .fl{grid-template-columns:1fr}
 .cd7.bk .nmx,.cd7.bk .fl{left:60px;width:736px}.cd8.bk .nmx,.cd8.bk .fl{left:186px;width:610px}
 .cd2.bk .fl,.cd4.bk .fl,.cd5.bk .fl,.cd6.bk .fl,.cd7.bk .fl,.cd8.bk .fl,.cd9.bk .fl{margin-top:-52px}
+
+.ued [dir="ltr"]{line-height:1.7}
+@media(max-width:860px){.ub{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;max-height:none;padding:4px}.ub .g{flex:none;flex-wrap:nowrap}.top{gap:6px;padding:6px 8px}.top nav{flex:1 1 100%;order:3;flex-wrap:nowrap;overflow-x:auto}.top nav .btn{white-space:nowrap;flex:none}#pn{width:130px}}
 </style></head><body>
 <div class="top"><b>DOCUMENT MAKER</b><nav><button class="btn" id="nd">Dashboard</button><button class="btn" id="nc">CV Maker</button><button class="btn" id="ns">Student Card Maker</button><button class="btn" id="nu">Urdu Document Maker</button><button class="btn" id="bp">My Projects</button></nav><button class="btn p" id="bnp" title="Start a fresh CV as a new project">+ New Project</button><button class="btn" id="bu" title="Undo (Ctrl+Z)" aria-label="Undo">↶ Undo</button><button class="btn" id="br" title="Redo (Ctrl+Y)" aria-label="Redo">↷ Redo</button><button class="btn" id="bd" title="Restore the original demo CV">Set as Default</button><input class="i" id="pn" style="width:180px" placeholder="Project name" aria-label="Project name"><button class="btn p" id="bs">Save Project</button></div>
 <div id="dash" style="flex:1;overflow:auto;padding:24px"><h2 style="margin:0 0 4px">Welcome to Document Maker</h2><p style="color:var(--mu);margin:0 0 18px">Choose a tool to start.</p><div class="dg">
@@ -650,8 +653,9 @@ function docLoad(){const e=EE();e.innerHTML=UD.html||`<p dir="rtl"><br></p>`;$('
 document.addEventListener('selectionchange',()=>{if(tool!='doc')return;const s=getSelection();if(s.rangeCount&&EE().contains(s.anchorNode)){ulr=s.getRangeAt(0).cloneRange();updCtl()}flt()});
 function rs(){const e=EE();e.focus({preventScroll:true});if(!ulr){const r=document.createRange();r.selectNodeContents(e);r.collapse(false);ulr=r}const s=getSelection();s.removeAllRanges();s.addRange(ulr)}
 function blk(n){const e=EE();while(n&&n.parentNode!==e)n=n.parentNode;return n&&n.nodeType==1?n:null}
-function sb(){rs();const s=getSelection();if(!s.rangeCount)return[];const r=s.getRangeAt(0),a=blk(r.startContainer),b=blk(r.endContainer);if(!a)return[];const o=[];let n=a;while(n){o.push(n);if(n===b)break;n=n.nextElementSibling}return n===b||!b?o:[a]}
-function selBlocks(bs){if(!bs.length)return;const r=document.createRange();r.setStartBefore(bs[0]);r.setEndAfter(bs[bs.length-1]);const s=getSelection();s.removeAllRanges();s.addRange(r);ulr=r.cloneRange()}
+function bAt(n,o,end){const e=EE();if(n===e){const c=e.children;if(!c.length)return null;return end?c[Math.max(0,Math.min(o-1,c.length-1))]:c[Math.min(o,c.length-1)]}return blk(n)}
+function sb(){rs();const s=getSelection();if(!s.rangeCount)return[];const r=s.getRangeAt(0);let a=bAt(r.startContainer,r.startOffset,false),b=bAt(r.endContainer,r.endOffset,true);if(!a)return[];if(!b)b=a;const o=[];let n=a;while(n){o.push(n);if(n===b)break;n=n.nextElementSibling}return n===b?o:[a]}
+function selBlocks(bs){bs=bs.filter(b=>b&&b.isConnected);if(!bs.length)return;const r=document.createRange(),l=bs[bs.length-1];r.setStart(bs[0],0);r.setEnd(l,l.childNodes.length);const s=getSelection();s.removeAllRanges();s.addRange(r);ulr=r.cloneRange()}
 function after(){fixLists();snapSoon();stat()}
 function fixLists(){EE().querySelectorAll('ul:not([dir]),ol:not([dir])').forEach(l=>l.dir=dirN())}
 function cmd(c,v){rs();document.execCommand('styleWithCSS',false,true);document.execCommand(c,false,v);after()}
@@ -671,8 +675,8 @@ const U={
  ar:()=>BO(b=>b.style.textAlign='right'),ac:()=>BO(b=>b.style.textAlign='center'),al:()=>BO(b=>b.style.textAlign='left'),aj:()=>BO(b=>b.style.textAlign='justify'),
  indp:()=>BO(b=>{const p=getComputedStyle(b).direction=='rtl'?'marginRight':'marginLeft';b.style[p]=Math.max(0,(parseFloat(b.style[p])||0)+5)+'mm'}),
  indm:()=>BO(b=>{const p=getComputedStyle(b).direction=='rtl'?'marginRight':'marginLeft';b.style[p]=Math.max(0,(parseFloat(b.style[p])||0)-5)+'mm'}),
- mvr:()=>BO(b=>{let l=parseFloat(b.style.marginLeft)||0,r=parseFloat(b.style.marginRight)||0;if(l>0)l=Math.max(0,l-5);else r+=5;b.style.marginLeft=l+'mm';b.style.marginRight=r+'mm'}),
- mvl:()=>BO(b=>{let l=parseFloat(b.style.marginLeft)||0,r=parseFloat(b.style.marginRight)||0;if(r>0)r=Math.max(0,r-5);else l+=5;b.style.marginLeft=l+'mm';b.style.marginRight=r+'mm'}),
+ mvr:()=>BO(b=>{let l=parseFloat(b.style.marginLeft)||0,r=parseFloat(b.style.marginRight)||0;l+=5;r=Math.max(0,r-5);b.style.marginLeft=l+'mm';b.style.marginRight=r+'mm'}),
+ mvl:()=>BO(b=>{let l=parseFloat(b.style.marginLeft)||0,r=parseFloat(b.style.marginRight)||0;r+=5;l=Math.max(0,l-5);b.style.marginLeft=l+'mm';b.style.marginRight=r+'mm'}),
  rtl:()=>BO(b=>{b.dir='rtl';b.dataset.m=1}),ltr:()=>BO(b=>{b.dir='ltr';b.dataset.m=1}),
  ul:()=>cmd('insertUnorderedList'),ol:()=>cmd('insertOrderedList'),
  up:()=>{const bs=sb();if(!bs.length)return;const q=bs[0].previousElementSibling;if(!q){toast('Already at the top');return}bs[bs.length-1].after(q);selBlocks(bs);snapSoon();bs[0].scrollIntoView({block:'nearest'})},
@@ -796,7 +800,7 @@ function ubar(){const B=(a,l,t)=>`<button class="btn sm" data-u="${a}" title="${
  +G(`<select id="ufont" aria-label="Font"></select><select id="usz" aria-label="Font size">${[14,16,18,20,22,24,28].map(n=>`<option value="${n}" ${n==18?'selected':''}>${n} pt</option>`).join('')}</select>`)
  +G(B('b','<b>B</b>','Bold (Ctrl+B)')+B('i','<i>I</i>','Italic (Ctrl+I)')+B('u','<u>U</u>','Underline (Ctrl+U)')+`<input type="color" id="ucol" value="#c0392b" title="Text color" aria-label="Text color"><input type="color" id="uhl" value="#ffff00" title="Highlight color" aria-label="Highlight color">`+B('hlx','✕ HL','Remove highlight'))
  +G(B('ar','▤→','Align right')+B('ac','☰','Center')+B('al','←▤','Align left')+B('aj','▦','Justify'))
- +G(B('indm','⇤','Decrease indentation')+B('indp','⇥','Increase indentation')+B('mvl','◀','Move paragraph left')+B('mvr','▶','Move paragraph right')+`<label class="soon">Left <input type="number" id="uml" min="0" max="100" value="0" aria-label="Left margin mm"></label><label class="soon">Right <input type="number" id="umr" min="0" max="100" value="0" aria-label="Right margin mm"></label>`)
+ +G(B('indm','⇤','Decrease indentation')+B('indp','⇥','Increase indentation')+B('mvl','◀','Move paragraph left')+B('mvr','▶','Move paragraph right')+`<label class="soon">Left mm <input type="number" id="uml" min="0" max="100" value="0" aria-label="Left margin mm"></label><label class="soon">Right mm <input type="number" id="umr" min="0" max="100" value="0" aria-label="Right margin mm"></label>`)
  +G(`<select id="ulh" aria-label="Line spacing"><option value="">Line space</option>${[1.2,1.5,1.8,2,2.2,2.5,3].map(n=>`<option>${n}</option>`).join('')}</select><select id="ups" aria-label="Paragraph spacing"><option value="">Para space</option>${[0,6,12,18,24,36].map(n=>`<option>${n}</option>`).join('')}</select>`)
  +G(B('ul','• List','Bullets')+B('ol','1. List','Numbering'))
  +G(B('rtl','RTL ⟵','Right-to-left paragraph')+B('ltr','LTR ⟶','Left-to-right paragraph')+`<button class="btn sm" id="ulg" data-u="lang" title="Switch writing language">اردو ✓ | EN</button>`+B('mix','🔗 Fix mixed','Isolate English words and numbers inside Urdu'))
