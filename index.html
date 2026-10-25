@@ -253,13 +253,52 @@ body.pc #card{transform:scale(.37795);transform-origin:0 0;-webkit-print-color-a
 
 .ued [dir="ltr"]{line-height:1.7}
 @media(max-width:860px){.ub{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;max-height:none;padding:4px}.ub .g{flex:none;flex-wrap:nowrap}.top{gap:6px;padding:6px 8px}.top nav{flex:1 1 100%;order:3;flex-wrap:nowrap;overflow-x:auto}.top nav .btn{white-space:nowrap;flex:none}#pn{width:130px}}
+
+/* ===== UI refresh ===== */
+:root{--bg:#f3f5fb;--card:#fff;--tx:#161b2e;--mu:#667085;--br:#e3e7f0;--ac:#4f46e5;--ac2:#0ea5e9;--sh:0 1px 2px rgba(16,24,40,.06),0 6px 18px rgba(16,24,40,.06);--pat:#cdd3e0}
+:root[data-theme=dark]{--bg:#0d1020;--card:#161a2e;--tx:#e8ebf7;--mu:#97a0bd;--br:#262c47;--sh:0 1px 2px #0006,0 6px 18px #0005;--pat:#232842}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1020;--card:#161a2e;--tx:#e8ebf7;--mu:#97a0bd;--br:#262c47;--sh:0 1px 2px #0006,0 6px 18px #0005;--pat:#232842}}
+body{font-family:Inter,"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}*{scrollbar-width:thin}
+.top{position:sticky;top:0;z-index:5;padding:10px 16px;gap:10px;box-shadow:var(--sh);backdrop-filter:blur(8px)}
+.logo{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:800;letter-spacing:.01em;white-space:nowrap}.logo i{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--ac),var(--ac2));box-shadow:0 4px 12px rgba(79,70,229,.4)}.logo i::after{content:"D";display:block;color:#fff;font:800 17px/34px system-ui;text-align:center;font-style:normal}
+.top nav{gap:4px}.top nav .btn{border:0;background:transparent;border-radius:999px;padding:8px 14px;font-weight:600;color:var(--mu);box-shadow:none;transform:none}.top nav .btn:hover{background:var(--bg);color:var(--tx)}.top nav .btn.on{background:var(--ac);color:#fff;outline:0;box-shadow:0 4px 12px rgba(79,70,229,.35)}
+.btn{border-radius:10px;font-weight:600;transition:background .15s,border-color .15s,box-shadow .15s,transform .15s;cursor:pointer}.btn:hover{border-color:var(--ac);box-shadow:var(--sh)}.btn:active{transform:translateY(1px)}
+.btn.p{background:linear-gradient(135deg,var(--ac),#7c3aed);border:0;color:#fff}.btn.p:hover{filter:brightness(1.1)}.btn.x{color:#dc2626}.btn.on{outline:0;border-color:var(--ac);box-shadow:0 0 0 2px rgba(79,70,229,.35)}
+.btn:focus-visible,.i:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,[contenteditable]:focus-visible{outline:3px solid rgba(79,70,229,.45);outline-offset:2px}
+.i,select.i{border-radius:10px;padding:8px 11px;min-height:38px;background:var(--card);transition:border-color .15s,box-shadow .15s}.i:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(79,70,229,.18);outline:0}.i.bad{border-color:#f59e0b}
+#pn{max-width:190px}
+.card{border-radius:14px;box-shadow:var(--sh);padding:14px}.card h3{font-size:15px;margin:0 0 12px;display:flex;align-items:center;gap:8px}.card h3::before{content:"";width:4px;height:16px;border-radius:2px;background:linear-gradient(var(--ac),var(--ac2))}
+.row{border-radius:12px;background:var(--bg);border:1px solid var(--br)}.card label.l{font-weight:600}
+#ed,#ced{background:var(--bg);padding:14px}
+.tb,.ub{box-shadow:var(--sh)}.tb{padding:10px;gap:8px}
+#scr,#cscr,#uscr{background:radial-gradient(circle at 1px 1px,rgba(120,130,160,.35) 1px,transparent 0) 0 0/20px 20px,var(--pat)}
+#paper,#upaper,#card{box-shadow:0 10px 40px rgba(16,24,40,.28)}
+.pre button{transition:transform .15s}.pre button:hover{transform:scale(1.15)}
+#modal{backdrop-filter:blur(4px)}#modal>div{border-radius:18px;box-shadow:0 24px 70px rgba(0,0,0,.35)}
+#toast{border-radius:999px;padding:11px 20px;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.mt{background:var(--card);padding:8px;gap:8px;border-bottom:1px solid var(--br)}.mt .btn{flex:1;border-radius:10px}
+#dash{background:radial-gradient(1000px 380px at 8% -10%,rgba(79,70,229,.16),transparent),radial-gradient(800px 380px at 100% 0,rgba(14,165,233,.16),transparent)}
+.hero{max-width:1100px;margin:6px auto 24px}.hero h1{font-size:clamp(26px,4.2vw,42px);margin:0 0 10px;line-height:1.15;letter-spacing:-.01em;background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{color:var(--mu);font-size:16px;max-width:640px;margin:0;line-height:1.6}
+.dg{max-width:1100px;margin:0 auto;gap:18px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.tc{padding:20px;border-radius:18px;transition:transform .2s,box-shadow .2s}.tc:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(79,70,229,.2)}.tc h3::before{display:none}.tc h3{font-size:18px;margin:0 0 6px}.tc p{line-height:1.55;font-size:14px}
+.ti{width:54px;height:54px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:14px;box-shadow:0 6px 16px rgba(0,0,0,.18)}
+.ti1{background:linear-gradient(135deg,#4f46e5,#7c3aed)}.ti2{background:linear-gradient(135deg,#f59e0b,#ef4444)}.ti3{background:linear-gradient(135deg,#0ea5e9,#10b981)}.ti4{background:var(--br);box-shadow:none}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}.chips span{font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--bg);color:var(--mu);border:1px solid var(--br)}.ta{display:flex;gap:8px;flex-wrap:wrap}.soonc{opacity:.75;border-style:dashed}
+.dfoot{max-width:1100px;margin:26px auto 0;color:var(--mu);font-size:13px;display:flex;gap:8px 22px;flex-wrap:wrap}
+#dash,#app,#capp,#uapp{animation:vin .25s ease}@keyframes vin{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media(max-width:860px){.logo{font-size:15px}#pn{max-width:140px}.hero p{font-size:15px}.tc{padding:16px}}
+@media print{.top,#thm{display:none!important}}
+.top nav{flex:1 1 calc(100% - 330px);min-width:0;flex-wrap:nowrap;overflow-x:auto;order:1}.top nav .btn{white-space:nowrap;flex:none}#thm{order:2}.top #bnp,.top #bu,.top #br,.top #bd,.top #pn,.top #bs{order:3}.top #bnp{margin-left:auto}
+@media(max-width:860px){.top nav{flex:1 1 100%;order:3}.top #bnp{margin-left:0}}
 </style></head><body>
-<div class="top"><b>DOCUMENT MAKER</b><nav><button class="btn" id="nd">Dashboard</button><button class="btn" id="nc">CV Maker</button><button class="btn" id="ns">Student Card Maker</button><button class="btn" id="nu">Urdu Document Maker</button><button class="btn" id="bp">My Projects</button></nav><button class="btn p" id="bnp" title="Start a fresh CV as a new project">+ New Project</button><button class="btn" id="bu" title="Undo (Ctrl+Z)" aria-label="Undo">↶ Undo</button><button class="btn" id="br" title="Redo (Ctrl+Y)" aria-label="Redo">↷ Redo</button><button class="btn" id="bd" title="Restore the original demo CV">Set as Default</button><input class="i" id="pn" style="width:180px" placeholder="Project name" aria-label="Project name"><button class="btn p" id="bs">Save Project</button></div>
-<div id="dash" style="flex:1;overflow:auto;padding:24px"><h2 style="margin:0 0 4px">Welcome to Document Maker</h2><p style="color:var(--mu);margin:0 0 18px">Choose a tool to start.</p><div class="dg">
-<div class="card"><h3>📄 CV Maker</h3><p>Build a CV with 10 designs, editable education, experience and custom sections.</p><button class="btn p" id="dcv">Create CV</button> <button class="btn" data-ca="projs">My Projects</button></div>
-<div class="card"><h3>🪪 Student Card Maker</h3><p>Make school ID cards with 10 designs, photo and logo upload and custom fields.</p><button class="btn p" id="dsc">Create Student Card</button> <button class="btn" data-ca="projs">My Projects</button></div>
-<div class="card"><h3>📝 Urdu Document Maker</h3><p>Write Urdu or English applications and letters with proper right-to-left text, templates, PDF, Word and print.</p><button class="btn p" id="dsu">Open Document Maker</button> <button class="btn" data-ca="projs">My Projects</button></div>
-<div class="card"><h3>More tools</h3><p>Passport photo, certificate and other tools can be added here later.</p></div></div></div>
+<div class="top"><b class="logo"><i></i>Document Maker</b><nav><button class="btn" id="nd">🏠 Dashboard</button><button class="btn" id="nc">📄 CV Maker</button><button class="btn" id="ns">🪪 Student Card</button><button class="btn" id="nu">📝 Urdu Document</button><button class="btn" id="bp">📁 My Projects</button></nav><button class="btn p" id="bnp" title="Start a fresh CV as a new project">+ New Project</button><button class="btn" id="bu" title="Undo (Ctrl+Z)" aria-label="Undo">↶ Undo</button><button class="btn" id="br" title="Redo (Ctrl+Y)" aria-label="Redo">↷ Redo</button><button class="btn" id="bd" title="Restore the original demo CV">Set as Default</button><input class="i" id="pn" style="width:180px" placeholder="Project name" aria-label="Project name"><button class="btn p" id="bs">💾 Save Project</button><button class="btn" id="thm" title="Light / dark mode" aria-label="Toggle light and dark mode">🌙</button></div>
+<div id="dash" style="flex:1;overflow:auto;padding:28px 22px"><div class="hero"><h1>Make professional documents in minutes</h1><p>CVs, student ID cards and Urdu / English applications – free, private and ready to print or download.</p></div><div class="dg">
+<div class="card tc"><div class="ti ti1">📄</div><h3>CV Maker</h3><p>16 professional designs with editable education, experience and custom sections.</p><div class="chips"><span>16 designs</span><span>Photo &amp; colors</span><span>PDF · PNG · JPG</span></div><div class="ta"><button class="btn p" id="dcv">Create CV</button><button class="btn" data-ca="projs">My Projects</button></div></div>
+<div class="card tc"><div class="ti ti2">🪪</div><h3>Student Card Maker</h3><p>School ID cards with front and back side, photo upload and custom fields.</p><div class="chips"><span>10 designs</span><span>Front + back</span><span>CR80 print size</span></div><div class="ta"><button class="btn p" id="dsc">Create Student Card</button><button class="btn" data-ca="projs">My Projects</button></div></div>
+<div class="card tc"><div class="ti ti3">📝</div><h3>Urdu Document Maker</h3><p>Write Urdu or English applications and letters with proper right-to-left text.</p><div class="chips"><span>16 templates</span><span>Urdu fonts</span><span>PDF · Word · Print</span></div><div class="ta"><button class="btn p" id="dsu">Open Document Maker</button><button class="btn" data-ca="projs">My Projects</button></div></div>
+<div class="card tc soonc"><div class="ti ti4">✨</div><h3>More tools coming</h3><p>Passport photo, certificate and more can be added here later.</p></div></div>
+<div class="dfoot"><span>💾 Your work is saved automatically in this browser</span><span>🔒 Nothing is uploaded to any server</span><span>⬇ Export as PDF, PNG, JPG or Word</span></div></div>
 <div class="mt"><button class="btn on" id="te">Editor</button><button class="btn" id="tv">Preview</button></div>
 <div class="app" id="app"><div id="ed"></div>
 <div id="pvw"><div class="tb" id="tb"></div><div id="scr"><div id="wrap"><div id="paper"></div></div></div></div></div>
@@ -824,4 +863,7 @@ function docInit(){if(!uinit){uinit=true;loadSavedFonts().then(checkFonts)}docLo
 
 $('pn').value=(projs().find(x=>x.id==projId)||{}).name||'';
 cvname=$('pn').value;all();show('dash');addEventListener('resize',()=>{if(tool=='cv')fit();else if(tool=='card')cfit();else if(tool=='doc')ufit()});
+(function(){const r=document.documentElement,b=document.getElementById('thm');try{const sv=localStorage.getItem('dm_theme');if(sv)r.dataset.theme=sv}catch(e){}
+ const cur=()=>r.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'),lab=()=>b.textContent=cur()=='dark'?'☀️':'🌙';lab();
+ b.onclick=()=>{const n=cur()=='dark'?'light':'dark';r.dataset.theme=n;try{localStorage.setItem('dm_theme',n)}catch(e){}lab()}})();
 </script></body></html>
