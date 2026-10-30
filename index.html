@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><title>Document Maker – CV, Student Card and Urdu Document Maker</title>
+<html lang="en"><head><meta charset="utf-8"><title>Document Maker – Admin</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&family=Noto+Naskh+Arabic:wght@400;700&family=Gulzar&family=Montserrat:wght@400;600;700;800&family=Roboto+Condensed:wght@400;700&family=Playfair+Display:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -343,8 +343,21 @@ body.tv .bgl{opacity:.5}
 @media(max-width:860px){.hero2{grid-template-columns:1fr;min-height:0;padding-top:24px}.hvis{height:330px}.mk1{width:170px;height:220px}.mk2{width:200px;height:122px}.mk3{width:160px;height:190px;left:20%}.steps{grid-template-columns:1fr}.sln{display:none}.stats{grid-template-columns:repeat(2,1fr)}.bgl .b{filter:blur(50px)}.lp{padding:26px 16px}}
 @media print{.bgl{display:none!important}}
 :root[data-theme=dark] .urd,:root[data-theme=dark] .eyebrow{color:#a5b4fc}@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .urd,:root:not([data-theme=light]) .eyebrow{color:#a5b4fc}}
-</style></head><body><div class="bgl" aria-hidden="true"><i class="b b1"></i><i class="b b2"></i><i class="b b3"></i><i class="b b4"></i></div>
-<div class="top"><b class="logo"><i></i>Document Maker</b><nav><button class="btn" id="nd">🏠 Dashboard</button><button class="btn" id="nc">📄 CV Maker</button><button class="btn" id="ns">🪪 Student Card</button><button class="btn" id="nu">📝 Urdu Document</button><button class="btn" id="bp">📁 My Projects</button></nav><button class="btn p" id="bnp" title="Start a fresh CV as a new project">+ New Project</button><button class="btn" id="bu" title="Undo (Ctrl+Z)" aria-label="Undo">↶ Undo</button><button class="btn" id="br" title="Redo (Ctrl+Y)" aria-label="Redo">↷ Redo</button><button class="btn" id="bd" title="Restore the original demo CV">Set as Default</button><input class="i" id="pn" style="width:180px" placeholder="Project name" aria-label="Project name"><button class="btn p" id="bs">💾 Save Project</button><button class="btn" id="thm" title="Light / dark mode" aria-label="Toggle light and dark mode">🌙</button></div>
+/* admin lock */
+#lock{position:fixed;left:0;top:0;right:0;bottom:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+body.locked #lock{display:flex}body.locked>*:not(#lock):not(.bgl){display:none!important}
+.lk{width:min(400px,100%);padding:30px 26px;border-radius:26px;text-align:center;animation:lkin .6s cubic-bezier(.2,.7,.2,1)}@keyframes lkin{from{opacity:0;transform:translateY(24px) scale(.96);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+.lk.shake{animation:shk .4s}@keyframes shk{20%,60%{transform:translateX(-9px)}40%,80%{transform:translateX(9px)}}
+.lkl{width:64px;height:64px;margin:0 auto 12px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:30px;background:linear-gradient(135deg,var(--ac),#7c3aed);box-shadow:0 10px 26px rgba(79,70,229,.4)}
+.lk h2{margin:0 0 6px;font-size:24px}.lk p{margin:0 0 16px;color:var(--mu);font-size:14px}.lk .i{text-align:center;font-size:16px;letter-spacing:.08em;margin-bottom:10px}
+.lkr{display:flex;gap:8px;align-items:center;justify-content:center;font-size:13px;color:var(--mu);margin-bottom:14px;cursor:pointer}.lk .btn.p{width:100%}.lk small{display:block;margin-top:14px;color:var(--mu);font-size:12px}
+#lke{min-height:20px;margin-top:10px;color:#dc2626;font-size:13px;font-weight:600}
+@media print{#lock{display:none!important}}
+</style></head><body class="locked"><div class="bgl" aria-hidden="true"><i class="b b1"></i><i class="b b2"></i><i class="b b3"></i><i class="b b4"></i></div>
+<div id="lock" role="dialog" aria-modal="true" aria-label="Admin login"><form class="lk glass" id="lkf" autocomplete="off"><div class="lkl">🔐</div><h2>Admin login</h2><p>Enter the admin password to open Document Maker.</p>
+<input type="password" id="lkp" class="i" placeholder="Password" autocomplete="current-password" aria-label="Admin password"><label class="lkr"><input type="checkbox" id="lkk"> Keep me signed in on this device</label>
+<button type="submit" class="btn p big" id="lkb">🔓 Unlock</button><div id="lke" role="alert" aria-live="polite"></div><small>Only the admin can use this website.</small></form></div>
+<div class="top"><b class="logo"><i></i>Document Maker</b><nav><button class="btn" id="nd">🏠 Dashboard</button><button class="btn" id="nc">📄 CV Maker</button><button class="btn" id="ns">🪪 Student Card</button><button class="btn" id="nu">📝 Urdu Document</button><button class="btn" id="bp">📁 My Projects</button></nav><button class="btn p" id="bnp" title="Start a fresh CV as a new project">+ New Project</button><button class="btn" id="bu" title="Undo (Ctrl+Z)" aria-label="Undo">↶ Undo</button><button class="btn" id="br" title="Redo (Ctrl+Y)" aria-label="Redo">↷ Redo</button><button class="btn" id="bd" title="Restore the original demo CV">Set as Default</button><input class="i" id="pn" style="width:180px" placeholder="Project name" aria-label="Project name"><button class="btn p" id="bs">💾 Save Project</button><button class="btn" id="lgo" title="Log out" aria-label="Log out">🔒 Logout</button><button class="btn" id="thm" title="Light / dark mode" aria-label="Toggle light and dark mode">🌙</button></div>
 <div id="dash" style="flex:1;overflow:auto;padding:0">
 <section class="lp hero2"><div class="hcopy"><span class="badge rv">✨ Free · Private · Print-ready</span><h1 class="rv" style="--d:1">Make <em>professional documents</em> in minutes</h1><p class="urd rv" style="--d:2" lang="ur" dir="rtl">سی وی، اسٹوڈنٹ کارڈ اور اردو درخواستیں — چند منٹ میں تیار</p><p class="sub rv" style="--d:3">CVs, student ID cards and Urdu / English applications. Fill in the details, pick a design, then download or print.</p><div class="hcta rv" style="--d:4"><button class="btn p big" data-go="cv">📄 Create a CV</button><button class="btn big" data-go="card">🪪 Student Card</button><button class="btn big" data-go="doc">📝 Urdu Document</button></div></div>
 <div class="hvis" aria-hidden="true"><div class="mk mk1 glass"><div class="mh"></div><div class="mc"><i class="mp"></i><div class="ml"><i style="width:80%"></i><i style="width:60%"></i><i style="width:70%"></i></div></div><div class="mb"><i></i><i style="width:75%"></i><i style="width:55%"></i><i></i></div></div>
@@ -986,5 +999,28 @@ cvname=$('pn').value;all();show('dash');addEventListener('resize',()=>{if(tool==
   const t=e.target.closest&&e.target.closest('.tc');if(t&&!t.classList.contains('soonc')){const r=t.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;t.style.setProperty('--ry',(x*8)+'deg');t.style.setProperty('--rx',(-y*8)+'deg')}});
  dash.addEventListener('mouseout',e=>{const t=e.target.closest&&e.target.closest('.tc');if(t){t.style.setProperty('--rx','0deg');t.style.setProperty('--ry','0deg')}});
  dash.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;const id={cv:'dcv',card:'dsc',doc:'dsu'}[b.dataset.go];if(id)document.getElementById(id).click()});
+})();
+/* ===== admin password gate (client-side deterrent – see README) ===== */
+(function(){
+const sha=(()=>{const P=[];for(let n=2;P.length<64;n++)if(P.every(p=>n%p))P.push(n);const K=P.map(p=>Math.floor((Math.cbrt(p)%1)*4294967296)),H0=P.slice(0,8).map(p=>Math.floor((Math.sqrt(p)%1)*4294967296));
+return function(bytes){const H=H0.slice(),l=bytes.length,w=new Uint32Array(64),pad=new Uint8Array(((l+9+63)>>6)<<6);pad.set(bytes);pad[l]=128;const dv=new DataView(pad.buffer);dv.setUint32(pad.length-4,(l*8)>>>0);dv.setUint32(pad.length-8,Math.floor(l*8/4294967296));
+for(let o=0;o<pad.length;o+=64){for(let i=0;i<16;i++)w[i]=dv.getUint32(o+i*4);for(let i=16;i<64;i++){const a=w[i-15],b=w[i-2],s0=((a>>>7)|(a<<25))^((a>>>18)|(a<<14))^(a>>>3),s1=((b>>>17)|(b<<15))^((b>>>19)|(b<<13))^(b>>>10);w[i]=(w[i-16]+s0+w[i-7]+s1)|0}
+let a=H[0],b=H[1],c=H[2],d=H[3],e=H[4],f=H[5],g=H[6],h=H[7];for(let i=0;i<64;i++){const S1=((e>>>6)|(e<<26))^((e>>>11)|(e<<21))^((e>>>25)|(e<<7)),ch=(e&f)^(~e&g),t1=(h+S1+ch+K[i]+w[i])|0,S0=((a>>>2)|(a<<30))^((a>>>13)|(a<<19))^((a>>>22)|(a<<10)),mj=(a&b)^(a&c)^(b&c),t2=(S0+mj)|0;h=g;g=f;f=e;e=(d+t1)|0;d=c;c=b;b=a;a=(t1+t2)|0}
+H[0]=(H[0]+a)|0;H[1]=(H[1]+b)|0;H[2]=(H[2]+c)|0;H[3]=(H[3]+d)|0;H[4]=(H[4]+e)|0;H[5]=(H[5]+f)|0;H[6]=(H[6]+g)|0;H[7]=(H[7]+h)|0}
+const out=new Uint8Array(32),o=new DataView(out.buffer);H.forEach((v,i)=>o.setUint32(i*4,v>>>0));return out}})();
+const SALT='dm-7f3a91c2e5b84d06',HASH="3568cc495af71a35e70c588af54f1b12ccbc180d9c58e92c6e4500e678df4e36",N=50000,KEY='dm_auth',body=document.body;
+const enc=t=>new TextEncoder().encode(t),hex=u=>[...u].map(b=>b.toString(16).padStart(2,'0')).join('');
+const derive=pw=>{let h=enc(SALT+':'+pw);for(let i=0;i<N;i++)h=sha(h);return hex(h)},tok=()=>hex(sha(enc(HASH+':session')));
+const has=()=>{try{const t=tok();return sessionStorage.getItem(KEY)===t||localStorage.getItem(KEY)===t}catch(e){return false}};
+const f=document.getElementById('lkf'),pw=document.getElementById('lkp'),er=document.getElementById('lke'),bt=document.getElementById('lkb');let fails=0;
+function unlock(){body.classList.remove('locked');pw.value='';er.textContent='';try{show('dash')}catch(e){}window.dispatchEvent(new Event('resize'))}
+function lock(){body.classList.add('locked');setTimeout(()=>pw.focus(),50)}
+if(has())unlock();else lock();
+f.addEventListener('submit',e=>{e.preventDefault();if(bt.disabled)return;bt.disabled=true;bt.textContent='Checking…';er.textContent='';
+ setTimeout(()=>{const good=derive(pw.value)===HASH;
+  if(good){try{const t=tok();sessionStorage.setItem(KEY,t);if(document.getElementById('lkk').checked)localStorage.setItem(KEY,t)}catch(x){}fails=0;bt.disabled=false;bt.textContent='🔓 Unlock';unlock()}
+  else{fails++;er.textContent='Wrong password. Try again.'+(fails>=3?' (wait a few seconds)':'');f.classList.remove('shake');void f.offsetWidth;f.classList.add('shake');pw.select();
+   setTimeout(()=>{bt.disabled=false;bt.textContent='🔓 Unlock'},fails>=3?Math.min(1000*fails,8000):300)}},40)});
+document.getElementById('lgo').addEventListener('click',()=>{try{sessionStorage.removeItem(KEY);localStorage.removeItem(KEY)}catch(e){}location.reload()});
 })();
 </script></body></html>
